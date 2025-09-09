@@ -1,0 +1,26 @@
+{
+  "name": "mini-message-board",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/henrique-serra/mini-message-board#readme",
+  "bugs": {
+    "url": "https://github.com/henrique-serra/mini-message-board/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrique-serra/mini-message-board.git"
+  },
+  "license": "ISC",
+  "author": "Henrique Serra",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  }
+}
