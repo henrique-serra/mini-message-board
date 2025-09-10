@@ -43,7 +43,8 @@ const formatMessages = function formatMessages(messages) {
 
 export const index = function index(req, res) {
 
-  const messagesCopy = formatMessages(messages);
+  const messagesSortedByDate = messages.sort((a, b) => new Date(b.added) - new Date(a.added));
+  const messagesCopy = formatMessages(messagesSortedByDate);
 
   res.render('index', { title: 'Home', messages: messagesCopy });
 };

@@ -3,13 +3,32 @@
 <%- include('./partials/head.ejs', { title }) %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <form method="POST" action="/new">
-        <label for="user">Author</label>
-        <input type="text" id="user" name="user">
-        <label for="text">Message</label>
-        <input type="text" id="text" name="text">
-        <button type="submit">Submit</button>
-    </form>
+    
+    <div class="container">
+        <h1 class="form-page-title">Create New Message</h1>
+        
+        <div class="form-container">
+            <form method="POST" action="/new">
+                <div class="form-group">
+                    <label for="user">Author Name</label>
+                    <input type="text" id="user" name="user" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="text">Message</label>
+                    <textarea id="text" name="text" rows="4" required placeholder="What's on your mind?"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-buttons">
+                        <button type="submit" class="btn">Post Message</button>
+                        <a href="/" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <%- include('./partials/footer.ejs') %>
 </body>
 </html>

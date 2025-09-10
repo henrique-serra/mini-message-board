@@ -3,11 +3,23 @@
 <%- include('./partials/head.ejs', { title }) %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <h1>Author</h1>
-    <h2><%= message.user %></h2>
-    <h1>Message</h1>
-    <p><%= message.text %></p>
-    <p>Posted at <%= message.added %></p>
+    
+    <div class="container">
+        <div class="message-detail">
+            <div class="message-text"><%= message.text %></div>
+            
+            <div class="message-detail-meta">
+                <h2>Message Details</h2>
+                <p><strong>Author:</strong> <%= message.user %></p>
+                <p><strong>Posted:</strong> <%= message.added %></p>
+            </div>
+            
+            <div class="mt-32">
+                <a href="/" class="btn btn-secondary">← Back to Messages</a>
+            </div>
+        </div>
+    </div>
+    
     <%- include('./partials/footer.ejs') %>
 </body>
 </html>
