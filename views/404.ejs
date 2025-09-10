@@ -3,12 +3,6 @@
 <%- include('./partials/head.ejs', { title }) %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <% messages.forEach(({ id, text, user, added }) => { %>
-        <%= text %>
-        <%= user %>
-        <%= added %>
-        <a href="/msgs/<%= id %>">Open Message</a>
-    <% }) %>
     <%- include('./partials/footer.ejs') %>
 </body>
 </html>
