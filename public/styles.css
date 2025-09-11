@@ -157,7 +157,7 @@ p {
 
 .btn-danger {
   background: var(--color-danger);
-  color: white;
+  color: #fafafa;
 }
 
 .btn-danger:hover {
@@ -295,6 +295,28 @@ footer {
 .mb-16 { margin-bottom: 16px; }
 .mb-24 { margin-bottom: 24px; }
 .mb-32 { margin-bottom: 32px; }
+
+/* Empty state styles */
+.empty-state {
+  text-align: center;
+  padding: 80px 24px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.empty-state h2 {
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.empty-state p {
+  color: #9ca3af;
+  margin-bottom: 32px;
+  font-size: 16px;
+}
 
 /* Responsive design */
 @media (max-width: 768px) {

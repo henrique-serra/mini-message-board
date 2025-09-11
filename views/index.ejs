@@ -8,8 +8,10 @@
         <h1>Message Board</h1>
         
         <% if (messages.length === 0) { %>
-            <div class="message-card">
-                <p>No messages yet. <a href="/new" class="btn">Create the first message!</a></p>
+            <div class="empty-state">
+                <h2>No messages yet</h2>
+                <p>Be the first to share something with the community!</p>
+                <a href="/new" class="btn">Create the first message</a>
             </div>
         <% } else { %>
             <% messages.forEach(({ id, text, user, added }) => { %>
