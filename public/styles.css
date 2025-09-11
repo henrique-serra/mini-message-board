@@ -170,6 +170,17 @@ p {
   align-items: center;
 }
 
+.message-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.delete-form {
+  margin: 0; /* Remove margem padrão do formulário */
+  display: inline; /* Faz o form se comportar como elemento inline */
+}
+
 .form-page-title {
   text-align: center;
   margin-bottom: 32px;

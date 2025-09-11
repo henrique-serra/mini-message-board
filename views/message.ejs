@@ -14,12 +14,12 @@
                 <p><strong>Posted:</strong> <%= message.added %></p>
             </div>
             
-            <div class="mt-32">
+            <div class="mt-32 message-actions">
                 <a href="/" class="btn btn-secondary">← Back to Messages</a>
+                <form action="/msgs/<%= message.id %>/delete" method="post" class="delete-form">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
             </div>
-            <form action="/msgs/<%= message.id %>/delete" method="post">
-                <button class="btn btn-danger" type="submit">Delete</button>
-            </form>
         </div>
     </div>
     

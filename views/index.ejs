@@ -20,9 +20,9 @@
                             <div class="message-author">By <%= user %></div>
                             <div class="message-date">Posted <%= added %></div>
                         </div>
-                        <div>
+                        <div class="message-actions">
                             <a href="/msgs/<%= id %>" class="btn">Read More</a>
-                            <form action="/msgs/<%= id %>/delete" method="post">
+                            <form action="/msgs/<%= id %>/delete" method="post" class="delete-form">
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
                         </div>
