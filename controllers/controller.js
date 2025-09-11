@@ -19,6 +19,11 @@ const messages = [
   }
 ];
 
+const deleteMessage = function deleteMessage(id) {
+  const messageIndex = messages.findIndex((msg) => msg.id === id);
+  return messages.splice(messageIndex, 1);
+}
+
 const formatDate = function formatDate(date) {
   const day = date.getDate().toString().padStart(2, '0');
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -72,6 +77,16 @@ export const msgDetails = function msgDetails(req, res) {
     const messageCopy = { ...message, added: dateFormatted }
 
     res.render('message', { title: 'Message Details', message: messageCopy });
+  } catch (err) {
+    console.error(err);
+    res.status(404).render('404', { title: 'Message not found' });
+  }
+}
+
+export const deleteMessagePost = function deleteMessagePost(req, res) {
+  try {
+    deleteMessage(req.params.id);
+    res.redirect('/');
   } catch (err) {
     console.error(err);
     res.status(404).render('404', { title: 'Message not found' });

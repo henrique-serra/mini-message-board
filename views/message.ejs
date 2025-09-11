@@ -17,6 +17,9 @@
             <div class="mt-32">
                 <a href="/" class="btn btn-secondary">← Back to Messages</a>
             </div>
+            <form action="/msgs/<%= message.id %>/delete" method="post">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
         </div>
     </div>
     
