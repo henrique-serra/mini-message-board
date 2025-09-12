@@ -325,13 +325,14 @@ footer {
   }
   
   nav ul {
-    flex-direction: column;
     gap: 16px;
-    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   nav a {
-    text-align: center;
+    padding: 8px 16px;
+    font-size: 15px;
   }
   
   .message-card,
@@ -348,5 +349,15 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+  
+  .message-actions {
+    gap: 8px;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 }
