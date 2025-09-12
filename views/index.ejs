@@ -14,12 +14,12 @@
                 <a href="/new" class="btn">Create the first message</a>
             </div>
         <% } else { %>
-            <% messages.forEach(({ id, text, user, added }) => { %>
+            <% messages.forEach(({ id, text, username, added }) => { %>
                 <div class="message-card">
                     <div class="message-text"><%= text %></div>
                     <div class="message-meta">
                         <div>
-                            <div class="message-author">By <%= user %></div>
+                            <div class="message-author">By <%= username %></div>
                             <div class="message-date">Posted <%= added %></div>
                         </div>
                         <div class="message-actions">

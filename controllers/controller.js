@@ -1,22 +1,23 @@
 import crypto from 'crypto';
+import Database from '../db/queries.js';
+import { body, validationResult } from 'express-validator';
 
-const createId = function createId() {
-  return crypto.randomBytes(16).toString('hex');
-}
+const db = new Database();
 
-const messages = [
-  {
-    id: createId(),
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date()
-  },
-  {
-    id: createId(),
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date()
-  }
+export const validateMessage = [
+  body('text')
+    .notEmpty()
+    .withMessage('Mandatory field')
+    .isLength({ max: 1000 })
+    .withMessage('Max characters: 1000')
+    .trim(),
+  
+  body('username')
+    .notEmpty()
+    .withMessage('Mandatory field')
+    .isLength({ max: 100 })
+    .withMessage('Max characters: 100)')
+    .trim()
 ];
 
 const deleteMessage = function deleteMessage(id) {
@@ -35,44 +36,49 @@ const formatDate = function formatDate(date) {
 }
 
 const formatMessages = function formatMessages(messages) {
-  return messages.map(({ id, text, user, added }) => {
+  return messages.map(({ id, text, username, added }) => {
     const dateFormatted = formatDate(added);
     return {
       id,
       text,
-      user,
+      username,
       added: dateFormatted
     }
   })
 }
 
-export const index = function index(req, res) {
+export const index = async function index(req, res) {
 
-  const messagesSortedByDate = messages.sort((a, b) => new Date(b.added) - new Date(a.added));
-  const messagesCopy = formatMessages(messagesSortedByDate);
+  const messagesSortedByDate = await db.getAllMessages();
+  const messagesFormatted = formatMessages(messagesSortedByDate);
 
-  res.render('index', { title: 'Home', messages: messagesCopy });
+  res.render('index', { title: 'Home', messages: messagesFormatted });
 };
 
 export const newMsg = function newMsg(req, res) {
   res.render('new', { title: 'Create New Message' })
 }
 
-export const createNewMsg = function createNewMsg(req, res) {
-  const { user, text } = req.body;
-  console.log(req.body);
-  messages.push({
-    id: createId(),
-    text,
-    user,
-    added: new Date()
-  });
-  res.redirect('/');
+export const createNewMsg = async function createNewMsg(req, res) {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    
+    await db.insertMessage(req.body);  
+    res.redirect('/');
+
+  } catch (error) {
+    console.error('Error posting message: ', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+  
 }
 
-export const msgDetails = function msgDetails(req, res) {
+export const msgDetails = async function msgDetails(req, res) {
   try {
-    const message = messages.find((msg) => msg.id === req.params.id);
+    const message = await db.getMessage(req.params.id);
     const dateFormatted = formatDate(message.added);
     const messageCopy = { ...message, added: dateFormatted }
 
@@ -83,9 +89,9 @@ export const msgDetails = function msgDetails(req, res) {
   }
 }
 
-export const deleteMessagePost = function deleteMessagePost(req, res) {
+export const deleteMessagePost = async function deleteMessagePost(req, res) {
   try {
-    deleteMessage(req.params.id);
+    await db.deleteMessage(req.params.id);
     res.redirect('/');
   } catch (err) {
     console.error(err);
